@@ -77,7 +77,7 @@ def pregunta_03():
     """
     # Importe el stemmer de Porter
     # Importe CountVectorizer
-    from nlk.stem.porter import PorterStemmer
+    from nltk.stem.porter import PorterStemmer
     from sklearn.feature_extraction.text import CountVectorizer
     
     # Cree un stemeer que use el algoritmo de Porter.
