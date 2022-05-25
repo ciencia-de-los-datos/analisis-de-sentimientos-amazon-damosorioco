@@ -119,17 +119,17 @@ def pregunta_04():
     countVectorizer = CountVectorizer(
         analyzer= analyzer,
         lowercase= True,
-        stop_words= "english",
-        token_pattern= r"(?u)\b[a-zA-Z][a-zA-Z]+\b",
-        binary= False,
-        max_df=1.0,
-        min_df=5,
+        stop_words= None,
+        token_pattern= r'[A-Za-z]+',
+        binary=False,
+        max_df= 1.0,
+        min_df= 5,
     )
 
     # Cree un pipeline que contenga el CountVectorizer y el modelo de BernoulliNB.
     pipeline = Pipeline(
         steps=[
-            ("CountVectorizer", CountVectorizer),
+            ("CountVectorizer", countVectorizer),
             ("BernoulliNB", BernoulliNB()),
         ],
     )
@@ -138,7 +138,7 @@ def pregunta_04():
     # considerar 10 valores entre 0.1 y 1.0 para el parámetro alpha de
     # BernoulliNB.
     param_grid = {
-        "BernoulliNB__alpha": np.linspace(0.1, 1.0, num=10),
+        "BernoulliNB__alpha": np.linspace(0.1, 1.0, num=10)
     }
 
     # Defina una instancia de GridSearchCV con el pipeline y el diccionario de
@@ -154,10 +154,7 @@ def pregunta_04():
 
     # Búsque la mejor combinación de regresores
     gridSearchCV.fit(x_train, y_train)
-    print(gridSearchCV)
-    print('Score: ',gridSearchCV.score(x_train, y_train).round(4))
-
-    # Retorne el mejor modelo
+    
     return gridSearchCV
 
 
