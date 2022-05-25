@@ -143,7 +143,7 @@ def pregunta_04():
 
     # Defina una instancia de GridSearchCV con el pipeline y el diccionario de
     # parámetros. Use cv = 5, y "accuracy" como métrica de evaluación
-    gridSearchCV = GridSearchCV(
+    gridSearchCV = gridSearchCV(
         estimator= pipeline,
         param_grid= param_grid ,
         cv= 5,
@@ -174,17 +174,17 @@ def pregunta_05():
     gridSearchCV = pregunta_04()
 
     # Cargue las variables.
-    X_train, X_test, y_train, y_test = pregunta_02()
+    x_train, x_test, y_train, y_test = pregunta_02()
 
     # Evalúe el pipeline con los datos de entrenamiento usando la matriz de confusion.
-    cfm_train = ____(
-        y_true=____,
-        y_pred=____.____(____),
+    cfm_train = confusion_matrix(
+        y_true=y_train,
+        y_pred=gridSearchCV.predict(x_train),
     )
 
-    cfm_test = ____(
-        y_true=____,
-        y_pred=____.____(____),
+    cfm_test = confusion_matrix(
+        y_true= y_train,
+        y_pred= gridSearchCV.predict(x_test),
     )
 
     # Retorne la matriz de confusion de entrenamiento y prueba
@@ -201,11 +201,11 @@ def pregunta_06():
     gridSearchCV = pregunta_04()
 
     # Cargue los datos generados en la pregunta 01.
-    _, _, X_untagged, _ = pregunta_01()
+    x_tagged, y_tagged, x_untagged, y_untagged = pregunta_01()
 
     # pronostique la polaridad del sentimiento para los datos
     # no etiquetados
-    y_untagged_pred = ____.____(____)
+    y_untagged_pred = gridSearchCV.predict(x_untagged)
 
     # Retorne el vector de predicciones
     return y_untagged_pred
