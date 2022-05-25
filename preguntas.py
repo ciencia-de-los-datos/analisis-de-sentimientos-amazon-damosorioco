@@ -145,7 +145,7 @@ def pregunta_04():
     # parámetros. Use cv = 5, y "accuracy" como métrica de evaluación
     gridSearchCV = GridSearchCV(
         estimator= pipeline,
-        param_grid= param_grid,
+        param_grid= param_grid ,
         cv= 5,
         scoring= "accuracy",
         refit= True,
