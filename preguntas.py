@@ -119,8 +119,8 @@ def pregunta_04():
     countVectorizer = CountVectorizer(
         analyzer= analyzer,
         lowercase= True,
-        stop_words= None,
-        token_pattern= r'[A-Za-z]+',
+        stop_words= "english",
+        token_pattern= r"(?u)\b[a-zA-Z][a-zA-Z]+\b",
         binary= False,
         max_df=1.0,
         min_df=5,
@@ -154,6 +154,8 @@ def pregunta_04():
 
     # Búsque la mejor combinación de regresores
     gridSearchCV.fit(x_train, y_train)
+    print(gridSearchCV)
+    print('Score: ',gridSearchCV.score(x_train, y_train).round(4))
 
     # Retorne el mejor modelo
     return gridSearchCV
@@ -166,7 +168,7 @@ def pregunta_05():
     """
 
     # Importe confusion_matrix
-    from ____ import ____
+    from sklearn.metrics import confusion_matrix
 
     # Obtenga el pipeline de la pregunta 3.
     gridSearchCV = pregunta_04()
